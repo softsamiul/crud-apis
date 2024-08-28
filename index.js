@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const Product = require('./models/product.model');
 const productPouter = require('./routes/product.route');
+require('dotenv').config()
 // const bodyParser = require("body-parser")
 const app = express()
 const PORT = 3000;
@@ -13,7 +14,7 @@ app.use(express.urlencoded({extended: false}))
 // routes
 app.use("/api/products", productPouter)
 
-mongoose.connect("mongodb+srv://admin:oO9UPNO8lWzK0Ili@nodecruddb.owogp.mongodb.net/CRUD?retryWrites=true&w=majority&appName=nodeCrudDB").then(()=>{
+mongoose.connect(`mongodb+srv://${process.env.USERNAME2}:${process.env.PASSWORD2}@nodecruddb.owogp.mongodb.net/CRUD?retryWrites=true&w=majority&appName=nodeCrudDB`).then(()=>{
     console.log("Connected to database!")
 }).catch(()=>{
     console.log("db connecting failed!")
